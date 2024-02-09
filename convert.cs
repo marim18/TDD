@@ -1,22 +1,35 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
 
-namespace converter
+namespace converte
 {
 
-    class Main
+class program{
+    static int Main(string[] args)
     {
-      
+       convertfunctions bs = new convertfunctions();
+      try
+      {
+        double number = double.Parse(args[0]);
+         string unit = args[1];
+        bs.InchesToXConverter(number,unit);
+      }
+      catch (System.Exception)
+      {
+        Console.WriteLine("exception");
+        throw;
+      }
+      return 0;
 
-    }
+    }}
 
     public class convertfunctions
     {
         #region variables
-        public string cm = "cm";
-        public string mm = "mm";
-        public string m = "m";
-        public string t = "t";
+        public string cm = "-cm";
+        public string mm = "-mm";
+        public string m = "-m";
+        public string t = "-t";
         public double constant = 2.54;
         public double output = 0;
         #endregion
@@ -41,7 +54,7 @@ namespace converter
                 output = number * (constant / 10);
             }
             else if(arg == t){
-                Console.WriteLine("missing argument of metric")
+                Console.WriteLine("missing argument of metric");
             }
            Console.WriteLine( output);
 
