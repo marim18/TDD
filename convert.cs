@@ -12,13 +12,20 @@ class program{
       {
         double number = double.Parse(args[0]);
          string unit = args[1];
+        if (unit == bs.t){
+            bs.testcases();
+        }
+        else{
         bs.InchesToXConverter(number,unit);
+        }
+        
       }
       catch (System.Exception)
       {
-        Console.WriteLine("exception");
+        Console.WriteLine("exception, red");
         throw;
       }
+     
       return 0;
 
     }}
@@ -54,9 +61,12 @@ class program{
                 output = number * (constant / 10);
             }
             else if(arg == t){
-                Console.WriteLine("missing argument of metric");
+                Console.WriteLine("missing argument of metric, red");
             }
            Console.WriteLine( output);
+
+        }
+        public void testcases(){
 
         }
     }
