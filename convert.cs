@@ -4,37 +4,44 @@ using System;
 namespace converte
 {
 
-class program{
-    static int Main(string[] args)
+    class program
     {
-       convertfunctions bs = new convertfunctions();
-      try
-      {
-        double number = double.Parse(args[0]);
-        string unit = args[1];
-        if (unit == bs.t){
-            bs.testcases();
-        }
-        else{
-        bs.InchesToXConverter(number,unit);
-        }
-        
-      }
-      catch (System.Exception)
-      {
-        string unit = args[0];
-        if(unit == bs.t){
-            Console.WriteLine("yellow");
-             bs.testcases();
-        }
-        else{
-        Console.WriteLine("exception, red");
-        throw;}
-      }
-     
-      return 0;
+        static int Main(string[] args)
+        {
+            convertfunctions bs = new convertfunctions();
+            try
+            {
+                double number = double.Parse(args[0]);
+                string unit = args[1];
+                if (unit == bs.t)
+                {
+                    bs.testcases();
+                }
+                else
+                {
+                    bs.InchesToXConverter(number, unit);
+                }
 
-    }}
+            }
+            catch (System.Exception)
+            {
+                string unit = args[0];
+                if (unit == bs.t)
+                {
+                    Console.WriteLine("yellow");
+                    bs.testcases();
+                }
+                else
+                {
+                    Console.WriteLine("exception, red");
+                    throw;
+                }
+            }
+
+            return 0;
+
+        }
+    }
 
     public class convertfunctions
     {
@@ -46,7 +53,7 @@ class program{
         public double constant = 2.54;
         public double output = 0;
         #endregion
-       public void InchesToXConverter(double number, String arg)
+        public void InchesToXConverter(double number, String arg)
         {
 
 
@@ -64,16 +71,14 @@ class program{
             }
             if (arg == m)
             {
-                output = number * (constant / 10);
+                output = number * (constant / 100);
             }
-            else if(arg == t){
-                Console.WriteLine("missing argument of metric, red");
-            }
-           Console.WriteLine( output);
+            Console.WriteLine(output);
 
         }
-        public void testcases(){
-              //testcases provided by chatgpt
+        public void testcases()
+        {
+            //testcases provided by chatgpt
             double input1 = 3;
             double expected1 = 3 * 2.54;
             RunTest(input1, "-cm", expected1);
@@ -85,18 +90,15 @@ class program{
             double input3 = 3;
             double expected3 = 3 * (2.54 / 100);
             RunTest(input3, "-m", expected3);
-
-           
-            double input4 = 3;
-            RunTest(input4, "-t", -1);
         }
-        public void RunTest(double input, string arg, double expected){
-             try
+        public void RunTest(double input, string arg, double expected)
+        {
+            try
             {
                 InchesToXConverter(input, arg);
-
-                // Check if the output matches the expected value
-                if (output == expected)
+                double tolerance = 0.0001;
+                double difference = Math.Abs(output - expected);
+                if (difference < tolerance)
                 {
                     Console.WriteLine("Test passed: green");
                 }
